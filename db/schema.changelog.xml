@@ -1,0 +1,55 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.15.xsd">
+    <changeSet author="bilal.say" id="08-05-2023 12:00">
+        <createTable tableName="contact">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="contact_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="surname" type="VARCHAR(255)"/>
+            <column name="company" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="bilal.say" id="08-05-2023 12:05">
+        <createTable tableName="communication">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="communication_pkey"/>
+            </column>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="value" type="VARCHAR(255)"/>
+            <column name="contact_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="contact_id" baseTableName="communication" constraintName="fk_contact_communication" referencedColumnNames="id" referencedTableName="contact"/>
+    </changeSet>
+
+    <changeSet author="bilal.say" id="08-05-2023 12:10">
+        <createTable tableName="report">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="report_pkey"/>
+            </column>
+            <column name="date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="status" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="bilal.say" id="08-05-2023 12:15">
+        <createTable tableName="report_detail">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="report_detail_pkey"/>
+            </column>
+            <column name="location" type="VARCHAR(200)"/>
+            <column name="contact_count" type="INT"/>
+            <column name="contact_phone_count" type="INT"/>
+            <column name="report_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="report_id" baseTableName="report_detail" constraintName="fk_report_report_detail" referencedColumnNames="id" referencedTableName="report_detail"/>
+    </changeSet>
+
+</databaseChangeLog>
