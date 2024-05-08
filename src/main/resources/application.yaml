@@ -1,0 +1,59 @@
+server:
+  port: 8080
+
+spring:
+  jpa:
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+      hibernate.default_batch_fetch_size: 1000
+      hibernate.default_schema: public
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    generate-ddl: false
+    database: POSTGRESQL
+    database-platform: postgres
+    audit:
+      enabled: true
+  datasource:
+    url: jdbc:postgresql://localhost:5439/ff-local-db?useSSL=false&useUnicode=true&characterEncoding=utf-8
+    username: postgres
+    password: 123456
+
+kafka:
+  address: http://localhost:29092
+  consume:
+    enable: false
+  topics:
+    consumer:
+      group-id: contact-service-test
+      report:
+        contact: contact.ReportGenerate
+    partition-value: 1
+    replica-value: 1
+
+kafka-producer-config:
+  key-serializer-class: org.apache.kafka.common.serialization.StringSerializer
+  value-serializer-class: org.apache.kafka.common.serialization.StringSerializer
+  compression-type: snappy
+  acks: all
+  batch-size: 16384
+  batch-size-boost-factor: 100
+  linger-ms: 5
+  request-timeout-ms: 60000
+  retry-count: 5
+
+kafka-consumer-config:
+  key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  auto-offset-reset: earliest
+  batch-listener: false
+  auto-startup: true
+  concurrency-level: 3
+  session-timeout-ms: 10000
+  heartbeat-interval-ms: 3000
+  max-poll-interval-ms: 30000
+  max-partition-fetch-bytes-default: 1048576
+  max-partition-fetch-bytes-boost-factor: 1
+  poll-timeout-ms: 150
+
