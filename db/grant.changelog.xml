@@ -1,0 +1,16 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.15.xsd">
+
+    <changeSet id="08-05-2024 12:20" author="bilal.say">
+        <comment>contact table access grants.</comment>
+        <sql>
+            GRANT SELECT, INSERT, UPDATE, DELETE ON contact TO ${appUserName};
+            GRANT SELECT, INSERT, UPDATE, DELETE ON communication TO ${appUserName};
+            GRANT SELECT, INSERT, UPDATE, DELETE ON report TO ${appUserName};
+            GRANT SELECT, INSERT, UPDATE, DELETE ON report_detail TO ${appUserName};
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
