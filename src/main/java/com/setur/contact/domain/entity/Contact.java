@@ -30,6 +30,6 @@ public class Contact implements Serializable {
     @Column(name = "surname", nullable = false)
     private String surname;
 
-    @Column(name = "firm_name")
-    private String firmName;
+    @Column(name = "company")
+    private String company;
 }

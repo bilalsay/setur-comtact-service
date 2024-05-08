@@ -26,6 +26,7 @@ public class Communication implements Serializable {
     private UUID id;
 
     @Column(name = "type", nullable = false)
+    @Enumerated(EnumType.STRING)
     private CommunicationType type;
 
     @Column(name = "value", nullable = false)

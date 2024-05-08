@@ -1,6 +1,7 @@
 package com.setur.contact.infrastructure.configuration;
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 
@@ -8,4 +9,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class EnvironmentConfig {
 
+    @Value("${kafka.topics.producer.report.contact}")
+    private String contactReportTopic;
 }

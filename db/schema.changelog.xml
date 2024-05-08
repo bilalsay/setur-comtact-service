@@ -7,9 +7,9 @@
             <column name="id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="contact_pkey"/>
             </column>
-            <column name="ad" type="VARCHAR(255)"/>
-            <column name="soyad" type="VARCHAR(255)"/>
-            <column name="firma" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="surname" type="VARCHAR(255)"/>
+            <column name="company" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
 

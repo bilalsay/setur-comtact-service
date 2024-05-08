@@ -19,16 +19,28 @@ import org.springframework.web.context.request.WebRequest;
 public class ClientExceptionHandler {
 
     @ExceptionHandler(ContactNotFoundException.class)
-    public ResponseEntity<Object> handleStoreHasNotActiveZoneException(ContactNotFoundException e, WebRequest request) {
+    public ResponseEntity<Object> handleContactNotFoundException(ContactNotFoundException e, WebRequest request) {
         var httpStatus = HttpStatus.BAD_REQUEST;
         var errorMessage = e.getMessage();
-        var restResponse = RestResponse.builder()
+        var restResponse = buildResponse(httpStatus, errorMessage);
+        return new ResponseEntity<>(restResponse, httpStatus);
+    }
+
+    @ExceptionHandler(CommunicationNotFoundException.class)
+    public ResponseEntity<Object> handleCommunicationNotFoundException(CommunicationNotFoundException e, WebRequest request) {
+        var httpStatus = HttpStatus.BAD_REQUEST;
+        var errorMessage = e.getMessage();
+        var restResponse = buildResponse(httpStatus, errorMessage);
+        return new ResponseEntity<>(restResponse, httpStatus);
+    }
+
+    private RestResponse<Object> buildResponse(HttpStatus httpStatus, String errorMessage) {
+        return RestResponse.builder()
                 .status(httpStatus.value())
                 .isSuccess(false)
                 .error(ErrorCode.STORE_NOT_FOUND_EXCEPTION.getDescription())
                 .errorCode(ErrorCode.STORE_NOT_FOUND_EXCEPTION.name())
                 .message(errorMessage)
                 .build();
-        return new ResponseEntity<>(restResponse, httpStatus);
     }
 }

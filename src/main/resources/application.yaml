@@ -16,7 +16,7 @@ spring:
     audit:
       enabled: true
   datasource:
-    url: jdbc:postgresql://localhost:5439/ff-local-db?useSSL=false&useUnicode=true&characterEncoding=utf-8
+    url: jdbc:postgresql://localhost:5439/setur-db?useSSL=false&useUnicode=true&characterEncoding=utf-8
     username: postgres
     password: 123456
 
@@ -25,8 +25,7 @@ kafka:
   consume:
     enable: false
   topics:
-    consumer:
-      group-id: contact-service-test
+    producer:
       report:
         contact: contact.ReportGenerate
     partition-value: 1
