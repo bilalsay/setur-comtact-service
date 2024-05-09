@@ -21,8 +21,7 @@ public class KafkaProducerService<K extends Serializable, V> {
     @Retryable(retryFor = KafkaException.class, backoff = @Backoff(delay = 200L))
     public void send(String topicName, K key, V message) {
         try {
-            var kafkaResultFuture = kafkaTemplate.send(topicName, key, message);
-            kafkaResultFuture.whenComplete((kvSendResult, throwable) -> {
+            kafkaTemplate.send(topicName, key, message).whenComplete((kvSendResult, throwable) -> {
                 if (throwable == null) {
                     log.info("Received successful response from Kafka for key: {}"
                                     + " Topic: {} Partition: {} Offset: {} Timestamp: {}",
