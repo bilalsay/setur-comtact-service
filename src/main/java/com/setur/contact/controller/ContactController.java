@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping(value = "/contacts")
 @RequiredArgsConstructor
+@Validated
 public class ContactController {
 
     private final ContactService contactService;

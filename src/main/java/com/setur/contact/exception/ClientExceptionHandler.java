@@ -22,7 +22,7 @@ public class ClientExceptionHandler {
     public ResponseEntity<Object> handleContactNotFoundException(ContactNotFoundException e, WebRequest request) {
         var httpStatus = HttpStatus.BAD_REQUEST;
         var errorMessage = e.getMessage();
-        var restResponse = buildResponse(httpStatus, errorMessage);
+        var restResponse = buildResponse(httpStatus, errorMessage, ErrorCode.CONTACT_NOT_FOUND_EXCEPTION.name());
         return new ResponseEntity<>(restResponse, httpStatus);
     }
 
@@ -30,16 +30,23 @@ public class ClientExceptionHandler {
     public ResponseEntity<Object> handleCommunicationNotFoundException(CommunicationNotFoundException e, WebRequest request) {
         var httpStatus = HttpStatus.BAD_REQUEST;
         var errorMessage = e.getMessage();
-        var restResponse = buildResponse(httpStatus, errorMessage);
+        var restResponse = buildResponse(httpStatus, errorMessage, ErrorCode.COMMUNICATION_NOT_FOUND_EXCEPTION.name());
         return new ResponseEntity<>(restResponse, httpStatus);
     }
 
-    private RestResponse<Object> buildResponse(HttpStatus httpStatus, String errorMessage) {
+    @ExceptionHandler(ReportNotFoundException.class)
+    public ResponseEntity<Object> handleReportNotFoundException(ReportNotFoundException e, WebRequest request) {
+        var httpStatus = HttpStatus.BAD_REQUEST;
+        var errorMessage = e.getMessage();
+        var restResponse = buildResponse(httpStatus, errorMessage, ErrorCode.REPORT_NOT_FOUND_EXCEPTION.name());
+        return new ResponseEntity<>(restResponse, httpStatus);
+    }
+
+    private RestResponse<Object> buildResponse(HttpStatus httpStatus, String errorMessage, String errorCode) {
         return RestResponse.builder()
                 .status(httpStatus.value())
                 .isSuccess(false)
-                .error(ErrorCode.STORE_NOT_FOUND_EXCEPTION.getDescription())
-                .errorCode(ErrorCode.STORE_NOT_FOUND_EXCEPTION.name())
+                .errorCode(errorCode)
                 .message(errorMessage)
                 .build();
     }

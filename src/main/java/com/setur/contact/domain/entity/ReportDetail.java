@@ -32,6 +32,10 @@ public class ReportDetail implements Serializable {
     @Column(name = "contact_count", nullable = false)
     private Integer contactCount;
 
-    @Column(name = "contact__phone_count", nullable = false)
+    @Column(name = "contact_phone_count", nullable = false)
     private Integer contactPhoneCount;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "report_id", referencedColumnName = "id", nullable = false)
+    private Report report;
 }

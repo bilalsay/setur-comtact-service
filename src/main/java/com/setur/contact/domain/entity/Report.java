@@ -30,5 +30,6 @@ public class Report implements Serializable {
     private LocalDateTime date;
 
     @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
     private ReportStatus status;
 }

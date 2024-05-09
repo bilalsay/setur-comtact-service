@@ -6,6 +6,7 @@ import com.setur.contact.service.CommunicationService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -13,6 +14,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping(value = "/communications")
 @RequiredArgsConstructor
+@Validated
 public class CommunicationController {
 
     private final CommunicationService communicationService;
