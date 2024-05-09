@@ -1,10 +1,12 @@
 package com.setur.contact.dto.response;
 
-import com.setur.contact.dto.CommunicationDto;
+import com.setur.contact.dto.ReportDetailDto;
+import com.setur.contact.enums.ReportStatus;
 import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,12 +22,10 @@ public class ReportResponse implements Serializable {
 
     private UUID id;
 
-    private String name;
+    private LocalDateTime date;
 
-    private String surname;
+    private ReportStatus status;
 
-    private String company;
-
-    private List<CommunicationDto> communications;
+    private List<ReportDetailDto> details;
 
 }

@@ -1,5 +1,6 @@
-package com.setur.contact.dto.response;
+package com.setur.contact.dto;
 
+import com.setur.contact.enums.ReportStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -20,9 +22,7 @@ public class ReportDto implements Serializable {
 
     private UUID id;
 
-    private String name;
+    private LocalDateTime date;
 
-    private String surname;
-
-    private String company;
+    private ReportStatus status;
 }

@@ -12,6 +12,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @SuperBuilder
+@EqualsAndHashCode
 public class ReportGenerateEvent implements Serializable {
 
     @Serial

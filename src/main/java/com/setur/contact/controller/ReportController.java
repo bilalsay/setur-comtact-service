@@ -1,6 +1,6 @@
 package com.setur.contact.controller;
 
-import com.setur.contact.dto.response.ReportDto;
+import com.setur.contact.dto.ReportDto;
 import com.setur.contact.dto.response.ReportResponse;
 import com.setur.contact.service.ReportService;
 import lombok.RequiredArgsConstructor;
@@ -25,12 +25,12 @@ public class ReportController {
 
     @GetMapping
     public List<ReportDto> getReports() {
-        return null;
+        return reportService.getReports();
     }
 
     @GetMapping(path = "/{id}")
     public ReportResponse getReport(@PathVariable("id") UUID id) {
-        return null;
+        return reportService.getReport(id);
     }
 
 }

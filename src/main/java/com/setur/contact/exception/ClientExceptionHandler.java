@@ -34,6 +34,14 @@ public class ClientExceptionHandler {
         return new ResponseEntity<>(restResponse, httpStatus);
     }
 
+    @ExceptionHandler(ReportNotFoundException.class)
+    public ResponseEntity<Object> handleReportNotFoundException(ReportNotFoundException e, WebRequest request) {
+        var httpStatus = HttpStatus.BAD_REQUEST;
+        var errorMessage = e.getMessage();
+        var restResponse = buildResponse(httpStatus, errorMessage, ErrorCode.REPORT_NOT_FOUND_EXCEPTION.name());
+        return new ResponseEntity<>(restResponse, httpStatus);
+    }
+
     private RestResponse<Object> buildResponse(HttpStatus httpStatus, String errorMessage, String errorCode) {
         return RestResponse.builder()
                 .status(httpStatus.value())
