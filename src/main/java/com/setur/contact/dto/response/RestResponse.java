@@ -15,8 +15,6 @@ public class RestResponse<T> {
     @JsonProperty("isSuccess")
     private boolean isSuccess;
 
-    private String error;
-
     private String errorCode;
 
     private String message = "No message available";

@@ -49,7 +49,7 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint baseColumnNames="report_id" baseTableName="report_detail" constraintName="fk_report_report_detail" referencedColumnNames="id" referencedTableName="report_detail"/>
+        <addForeignKeyConstraint baseColumnNames="report_id" baseTableName="report_detail" constraintName="fk_report_report_detail" referencedColumnNames="id" referencedTableName="report"/>
     </changeSet>
 
 </databaseChangeLog>

@@ -6,6 +6,7 @@ import lombok.experimental.SuperBuilder;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -16,6 +17,6 @@ public class ReportGenerateEvent implements Serializable {
     @Serial
     private static final long serialVersionUID = -5362690614335988349L;
 
-    private LocalDateTime date;
+    private UUID reportId;
    
 }

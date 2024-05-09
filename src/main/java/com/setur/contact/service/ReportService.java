@@ -7,6 +7,7 @@ import com.setur.contact.enums.ReportStatus;
 import com.setur.contact.infrastructure.configuration.EnvironmentConfig;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,11 +20,9 @@ import java.util.UUID;
 @Slf4j
 public class ReportService {
 
-    private final KafkaProducerService<String, ReportGenerateEvent> kafkaProducerService;
-
-    private final EnvironmentConfig environmentConfig;
-
     private final ReportRepository reportRepository;
+
+    private final ApplicationEventPublisher publisher;
 
     @Transactional
     public void generateReport() {
@@ -35,8 +34,8 @@ public class ReportService {
         reportRepository.save(report);
 
         var event = ReportGenerateEvent.builder()
-                .date(date)
+                .reportId(report.getId())
                 .build();
-        kafkaProducerService.send(environmentConfig.getContactReportTopic(), UUID.randomUUID().toString(), event);
+        publisher.publishEvent(event);
     }
 }
