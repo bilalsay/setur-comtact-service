@@ -93,3 +93,6 @@ GET http://localhost:8080/reports
 
 # GetReportDetail
 GET http://localhost:8080/reports/ffe8326e-c1a9-42ec-920e-99dd37ce996b
+
+# Kafka Topic
+contact.ReportGenerate
